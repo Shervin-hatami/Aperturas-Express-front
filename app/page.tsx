@@ -1,8 +1,12 @@
+import Hero from '../componentes/hero';
+
 export default function Home() {
   return (
-    <div>
-      <h1 className="text-white">Hola Mundo</h1>
-    </div>
+    <main>
+      <Hero />
+      
+      {/* Puedes añadir más componentes de la página principal debajo del Hero */}
+    </main>
   );
 }
 
