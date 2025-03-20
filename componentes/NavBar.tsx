@@ -4,7 +4,7 @@ import FetchTituloNav from './FetchTituloNav';
 
 const NavBar: React.FC = async () => {
     return (
-        <div style={{ backgroundColor: 'lightblue' }} className="w-full px-5 fixed top-0 left-0 right-0 z-50 flex flex-row items-center justify-between">
+        <div className="bg-red-400 w-full px-5 fixed top-0 left-0 right-0 z-50 flex flex-row items-center justify-between">
             <FetchLogoNav />
             <FetchTituloNav />
         </div>
