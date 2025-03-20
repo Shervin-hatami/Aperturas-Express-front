@@ -4,4 +4,6 @@ export default function Servicios() {
         <h1 className="text-white">Servicios</h1>
       </div>
     );
-  }
+  } 
+
+  
