@@ -11,12 +11,10 @@ export default async function RootLayout({
   return (
     <html lang="es">
       <body>
-        <NavBar />
-        <div className="pt-35 px-10">{children}</div>
-        <Footer />
         <BannerEmergencia />
-        {children}
-        <Footer/>
+        <NavBar />
+        <div className="pt-20 ">{children}</div>
+        <Footer />
       </body>
     </html>
   );

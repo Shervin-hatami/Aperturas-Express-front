@@ -38,7 +38,7 @@ export default function Hero() {
   useEffect(() => {
     async function fetchHeroData() {
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
+        const apiUrl ='http://localhost:1337';
         
         const response = await fetch(`${apiUrl}/api/hero?populate=*`, {
           next: { revalidate: 120 }
@@ -63,7 +63,7 @@ export default function Hero() {
   if (!heroData) return null;
 
   // Construir URLs completas para las imágenes
-  const apiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
+  const apiUrl ='http://localhost:1337';
   const imageUrl = `${apiUrl}${heroData.image.url}`;
   const whatsappUrl = `${apiUrl}${heroData.whatsapp.url}`;
   

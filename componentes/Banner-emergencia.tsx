@@ -9,7 +9,7 @@ export default function BannerEmergencia() {
   useEffect(() => {
     async function fetchBanner() {
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
+        const apiUrl ='http://localhost:1337';
         
         const response = await fetch(`${apiUrl}/api/banner`, {
           next: { revalidate: 120 },
@@ -79,7 +79,7 @@ export default function BannerEmergencia() {
       `}</style>
       
       <div 
-        className="bg-red-600 text-white py-2 px-4 banner-fixed"
+        className="bg-red-600 text-white py-2 px-4 banner-fixed z-60"
         onClick={handleBannerClick}
         role="button"
         tabIndex={0}
