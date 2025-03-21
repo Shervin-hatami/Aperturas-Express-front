@@ -1,7 +1,5 @@
-'use client';
-
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { fetchFromStrapi } from './Fetcher';
 
 interface InfoItem {
   id: number;
@@ -15,10 +13,10 @@ interface HeroImage {
   width: number;
   height: number;
   formats: {
-    thumbnail: { url: string };
-    small: { url: string };
-    medium: { url: string };
-    large: { url: string };
+    thumbnail?: { url: string };
+    small?: { url: string };
+    medium?: { url: string };
+    large?: { url: string };
   };
 }
 
@@ -32,41 +30,17 @@ interface HeroData {
   info1: InfoItem[]; // Nueva propiedad para los datos estructurados
 }
 
-export default function Hero() {
-  const [heroData, setHeroData] = useState<HeroData | null>(null);
-  
-  useEffect(() => {
-    async function fetchHeroData() {
-      try {
-        const apiUrl ='http://localhost:1337';
-        
-        const response = await fetch(`${apiUrl}/api/hero?populate=*`, {
-          next: { revalidate: 120 }
-        });
-        
-        if (!response.ok) return;
-        
-        const result = await response.json();
-        
-        if (result?.data) {
-          setHeroData(result.data);
-          console.log("Datos recibidos:", result.data);
-        }
-      } catch (error) {
-        console.error('Error al cargar datos del hero:', error);
-      }
-    }
-    
-    fetchHeroData();
-  }, []);
+export default async function Hero() {
+  const apiUrl = 'http://localhost:1337';
+  const response = await fetchFromStrapi<HeroData>('hero?populate=*');
+  const heroData: HeroData | null = response?.data || null; // Acceder a la propiedad data
 
-  if (!heroData) return null;
+  if (!heroData || !heroData.image || !heroData.whatsapp) return null;
 
   // Construir URLs completas para las imágenes
-  const apiUrl ='http://localhost:1337';
-  const imageUrl = `${apiUrl}${heroData.image.url}`;
-  const whatsappUrl = `${apiUrl}${heroData.whatsapp.url}`;
-  
+  const imageUrl = `${apiUrl}${heroData.image.url}`; // URL de la imagen principal
+  const whatsappUrl = `${apiUrl}${heroData.whatsapp.url}`; // URL de la imagen de WhatsApp
+
   // Formatear número de teléfono para mejor legibilidad
   const formatPhone = (phone: string) => {
     if (phone.length === 9) {
