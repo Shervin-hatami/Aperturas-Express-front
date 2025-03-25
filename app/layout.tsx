@@ -13,7 +13,7 @@ export default async function RootLayout({
       <body>
         <BannerEmergencia />
         <NavBar />
-        <div className="pt-20 ">{children}</div>
+        <div className="pt-10 ">{children}</div>
         <Footer />
       </body>
     </html>

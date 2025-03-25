@@ -33,11 +33,10 @@ const SobreLaPagina: React.FC = async () => {
     if (!data) return <div>Cargando...</div>;
 
     return (
-        <div className="bg-red-100 rounded-lg">
+        <div className="bg-gray-150 rounded-lg">
 
             <div className="text-center flex items-center justify-center py-5">
-                <h2 className="font-bold text-2xl mr-2">{data.data[0].titulo}</h2>
-                <div className="font-bold text-2xl mr-2"><FetchTituloNav /></div>
+                <div className="font-bold text-2xl mr-2">{data.data[0].titulo} Aperturas Express - <FetchTituloNav /></div>
             </div>
 
             <h3 className="text-xl text-center">{data.data[0].descripcion}</h3>

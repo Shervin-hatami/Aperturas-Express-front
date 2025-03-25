@@ -8,7 +8,7 @@ const FetchTituloNav: React.FC = async () => {
 
     return (
         <>
-            {titulo ? <h1>Aperturas Express - {titulo}</h1> : <p>No title found</p>}
+            {titulo ? <h1>{titulo}</h1> : <p>No title found</p>}
         </>
     );
 };

@@ -1,5 +1,6 @@
 import Hero from '../componentes/hero';
 import SobreLaPagina from "@/componentes/SobreLaPagina";
+import CTA from "@/componentes/CTA";
 
 export default function Home() {
   return (
@@ -7,6 +8,7 @@ export default function Home() {
       <h1 className="text-white"></h1>
      <Hero />
      <SobreLaPagina/> 
+     <CTA/>
     </div>
   );
 }
