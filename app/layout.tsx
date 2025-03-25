@@ -13,7 +13,8 @@ export default async function RootLayout({
       <body className="flex flex-col min-h-screen">
         <BannerEmergencia />
         <NavBar />
-        <div className="pt-20 flex-1 flex justify-center">{children}</div>
+
+        <div className="pt-10 ">{children}</div>
         <Footer />
       </body>
     </html>

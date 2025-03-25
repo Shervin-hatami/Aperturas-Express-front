@@ -20,7 +20,11 @@ const FetchTituloNav: React.FC = async () => {
 
     return (
         <>
+<<<<<<< HEAD
             {titulo ? <p>{titulo}</p> : <p>No title found</p>}
+=======
+            {titulo ? <h1>{titulo}</h1> : <p>No title found</p>}
+>>>>>>> branch-sam
         </>
     );
 };

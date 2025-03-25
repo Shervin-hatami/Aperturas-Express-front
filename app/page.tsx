@@ -3,6 +3,8 @@ import Hero from '../componentes/hero';
 import SobreLaPagina from "@/componentes/SobreLaPagina";
 import TarjetaServicios from '@/componentes/TarjetaServicios';
 import ComentariosContainer from '@/componentes/ComentariosContainer';
+import CTA from "@/componentes/CTA";
+
 
 export default function Home() {
   return (
@@ -13,6 +15,7 @@ export default function Home() {
      <SeccionServicios/>
      <ComentariosContainer />
      <TarjetaServicios/>
+     <CTA/>
     </div>
   );
 }
