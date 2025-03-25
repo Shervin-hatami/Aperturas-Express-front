@@ -60,8 +60,13 @@ export default async function Hero() {
               <FetchLogoNav/>
             </div>
           </div>
-          <div className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 flex flex-nowrap items-center gap-2">
-            {heroData.title} <FetchTituloNav/>
+          <div className="text-xl md:text-4xl font-bold text-gray-900 mb-6 flex flex-nowrap items-center gap-2 whitespace-nowrap">
+           <h1>
+              {heroData.title}
+           </h1>
+           <h1>
+              <FetchTituloNav/>
+           </h1>
           </div>
           <p className="text-lg text-gray-700 mb-8">
             {heroData.description}

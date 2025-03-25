@@ -34,15 +34,10 @@ const SobreLaPagina: React.FC = async () => {
 
     return (
         <div className="bg-gray-150 rounded-lg">
-
-<<<<<<< HEAD
             <div className="text-center flex items-center justify-center py-10 whitespace-nowrap">
                 <h2 className="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl">{data.data[0].titulo}</h2>
                 <h2 className="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl"><FetchTituloNav /></h2>
-=======
-            <div className="text-center flex items-center justify-center py-5">
-                <div className="font-bold text-2xl mr-2">{data.data[0].titulo} Aperturas Express - <FetchTituloNav /></div>
->>>>>>> branch-sam
+
             </div>
 
             <h3 className="text-xl text-center">{data.data[0].descripcion}</h3>

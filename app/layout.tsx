@@ -15,7 +15,10 @@ export default async function RootLayout({
         <NavBar />
 
         <div className="pt-10 ">{children}</div>
+        <div className="pt-10"> 
         <Footer />
+        </div>
+      
       </body>
     </html>
   );

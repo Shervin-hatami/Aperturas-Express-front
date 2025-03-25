@@ -13,9 +13,9 @@ export default function Home() {
      <Hero />
      <SobreLaPagina/> 
      <SeccionServicios/>
+      <CTA/>
      <ComentariosContainer />
      <TarjetaServicios/>
-     <CTA/>
     </div>
   );
 }
