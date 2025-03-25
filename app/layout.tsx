@@ -10,10 +10,10 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body>
+      <body className="flex flex-col min-h-screen">
         <BannerEmergencia />
         <NavBar />
-        <div className="pt-20 ">{children}</div>
+        <div className="pt-20 flex-1 flex justify-center">{children}</div>
         <Footer />
       </body>
     </html>

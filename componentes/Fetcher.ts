@@ -1,3 +1,8 @@
+export interface ApiResponse<T> {
+    data: T;
+    // Puedes agregar más propiedades según la respuesta de tu API
+}
+
 export async function fetchFromStrapi<T>(endpoint: string): Promise<ApiResponse<T> | null> {
     try {
       const res = await fetch(`http://localhost:1337/api/${endpoint}`);
