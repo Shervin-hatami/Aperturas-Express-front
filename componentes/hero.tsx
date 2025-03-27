@@ -55,7 +55,7 @@ export default async function Hero() {
       <div className="container mx-auto pt-[72px] pb-12 px-4 md:px-8 lg:px-16 flex flex-col lg:flex-row items-center">
         {/* Contenido del lado izquierdo */}
         <div className="lg:w-1/2 mb-8 lg:mb-0 lg:pr-12">
-          <div className="flex justify-start mb-25">
+          <div className="flex justify-start mb-25 mt-15">
             <div className="w-auto transform scale-300 ml-15">
               <FetchLogoNav/>
             </div>

@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Definición de la interfaz para la respuesta de la API
 interface Foto {
@@ -30,15 +30,33 @@ interface ComentariosProps {
 }
 
 const Comentarios: React.FC<ComentariosProps> = ({ data }) => {
-    console.log(data); // Agrega este log para verificar los datos recibidos
     const [startIndex, setStartIndex] = useState(0);
+    const [itemsPerPage, setItemsPerPage] = useState(4);
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 1280) { // xl breakpoint
+                setItemsPerPage(4);
+            } else if (window.innerWidth >= 1024) { // lg breakpoint
+                setItemsPerPage(3);
+            } else if (window.innerWidth >= 768) { // md breakpoint
+                setItemsPerPage(2);
+            } else { // sm and smaller
+                setItemsPerPage(1);
+            }
+        };
+
+        handleResize(); // Llamada inicial
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     if (!Array.isArray(data)) {
-        return <div>No hay comentarios disponibles.</div>; // Manejo de caso donde data no es un array
+        return <div>No hay comentarios disponibles.</div>;
     }
 
     const handleNext = () => {
-        if (startIndex + 4 < data.length) { 
+        if (startIndex + itemsPerPage < data.length) {
             setStartIndex(startIndex + 1);
         }
     };
@@ -51,8 +69,8 @@ const Comentarios: React.FC<ComentariosProps> = ({ data }) => {
 
     return (
         <div className="flex flex-col items-center">
-            <div className="flex flex-wrap justify-center w-screen px-10 py-10">
-                {data.slice(startIndex, startIndex + 4).map((comentario) => { 
+            <div className="flex flex-wrap justify-center w-full px-4 md:px-6 lg:px-8 xl:px-10 py-5 md:py-8 xl:py-10 gap-4">
+                {data.slice(startIndex, startIndex + itemsPerPage).map((comentario) => { 
                     const puntos = parseInt(comentario.puntos.split(' ')[1]);
                     console.log('Comentario:', comentario); // Imprime el comentario para depuración
 
@@ -66,9 +84,19 @@ const Comentarios: React.FC<ComentariosProps> = ({ data }) => {
                         : 'http://localhost:1337/uploads/default_thumbnail.png'; // URL por defecto
 
                     return (
-                        <div key={comentario.id} className="m-4 p-5 border border-gray-300 rounded shadow-md w-96 h-72 flex flex-col">
+                        <div key={comentario.id} 
+                            className={`p-4 md:p-5 bg-white rounded shadow-md h-72 flex flex-col
+                                w-[calc(100%-1rem)]
+                                md:w-[calc(50%-1rem)]
+                                lg:w-[calc(33.33%-1rem)]
+                                xl:w-[calc(25%-1rem)]`}
+                        >
                             <div className="flex items-center mx-10">
-                                <img src={thumbnailUrl} alt={`Foto de ${comentario.nombre}`} className="mb-2 w-16 h-16 mr-4" />
+                                <img 
+                                    src={thumbnailUrl} 
+                                    alt={`Foto de ${comentario.nombre}`} 
+                                    className="mb-2 w-16 h-16 mr-4 rounded-full object-cover" 
+                                />
                                 <h4 className="font-bold text-xl">{comentario.nombre}</h4>
                             </div>
                             <div className="flex-grow overflow-hidden">
@@ -90,9 +118,9 @@ const Comentarios: React.FC<ComentariosProps> = ({ data }) => {
                     );
                 })}
             </div>
-            <div className="flex justify-between w-full px-10">
+            <div className="flex justify-between w-full px-4 md:px-6 lg:px-8 xl:px-10">
                 <button onClick={handlePrev} disabled={startIndex === 0} className="bg-red-500 text-white px-4 py-2 rounded disabled:opacity-50">←</button>
-                <button onClick={handleNext} disabled={startIndex + 4 >= data.length} className="bg-red-500 text-white px-4 py-2 rounded disabled:opacity-50">→</button>
+                <button onClick={handleNext} disabled={startIndex + itemsPerPage >= data.length} className="bg-red-500 text-white px-4 py-2 rounded disabled:opacity-50">→</button>
             </div>
         </div>
     );

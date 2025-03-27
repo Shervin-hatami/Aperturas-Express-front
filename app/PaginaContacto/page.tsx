@@ -79,7 +79,7 @@ export default function PaginaContacto() {
   if (!contactoData) return <div className="text-center p-8">No hay datos disponibles</div>;
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 h-screen">
       <div className="flex justify-center my-4">
         <div className="transform scale-325">
         </div>
