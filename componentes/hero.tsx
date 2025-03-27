@@ -1,6 +1,7 @@
 import { fetchFromStrapi } from './Fetcher';
 import FetchTituloNav from './FetchTituloNav';
 import FetchLogoNav from './FetchLogoNav';
+import React from 'react';
 
 interface InfoItem {
   id: number;
@@ -31,7 +32,11 @@ interface HeroData {
   info1: InfoItem[]; // Nueva propiedad para los datos estructurados
 }
 
-export default async function Hero() {
+interface HeroProps {
+  slug: string;
+}
+
+export default async function Hero({ slug }: HeroProps) {
   const apiUrl = 'http://localhost:1337';
   const response = await fetchFromStrapi<HeroData>('hero?populate=*');
   const heroData: HeroData | null = response?.data || null; // Acceder a la propiedad data
@@ -50,6 +55,8 @@ export default async function Hero() {
     return phone;
   };
 
+  const titulo = await FetchTituloNav(slug);
+
   return (
     <section className="bg-gray-100 pt-0 -mt-[72px]">
       <div className="container mx-auto pt-[72px] pb-12 px-4 md:px-8 lg:px-16 flex flex-col lg:flex-row items-center">
@@ -64,9 +71,9 @@ export default async function Hero() {
            <h1>
               {heroData.title}
            </h1>
-           <h1>
-              <FetchTituloNav/>
-           </h1>
+            <h1>
+              {titulo}
+           </h1> 
           </div>
           <p className="text-lg text-gray-700 mb-8">
             {heroData.description}

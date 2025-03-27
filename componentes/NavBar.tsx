@@ -2,7 +2,14 @@ import React from 'react';
 import FetchLogoNav from './FetchLogoNav';
 import FetchTituloNav from './FetchTituloNav';
 
-const NavBar: React.FC = async () => {
+interface NavbarProps {
+    slug: string;
+}
+
+const Navbar: React.FC<NavbarProps> = async ({ slug }) => {
+    const tituloProvincia = await FetchTituloNav(slug);
+    console.log('Título de la provincia:', tituloProvincia);
+
     return (
         <div className="bg-gray-100 w-full px-4 fixed top-0 left-0 right-0 z-50 flex flex-row items-center justify-between">
             <div className="flex flex-row items-center justify-between">
@@ -11,10 +18,10 @@ const NavBar: React.FC = async () => {
                 </div>
             </div>
             <div className="flex flex-row items-center justify-between text-xs">
-                Aperturas Express -<FetchTituloNav />
+                Aperturas Express - {tituloProvincia || 'Cargando...'}
             </div>
         </div>
     );
 };
 
-export default NavBar;
+export default Navbar;

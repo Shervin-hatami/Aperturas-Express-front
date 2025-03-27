@@ -5,14 +5,16 @@ import "./globals.css";
 
 export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: { slug: string };
 }>) {
   return (
     <html lang="es">
       <body className="flex flex-col min-h-screen">
         <BannerEmergencia />
-        <NavBar />
+        <NavBar slug={params.slug} />
 
         <div className="pt-10 ">{children}</div>
         <div className="pt-10"> 
