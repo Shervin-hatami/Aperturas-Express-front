@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import GridBackground from '../../componentes/GridBackground';
 
 interface ContactoField {
   id: number;
@@ -79,42 +80,41 @@ export default function PaginaContacto() {
   if (!contactoData) return <div className="text-center p-8">No hay datos disponibles</div>;
 
   return (
-    <div className="container mx-auto px-4 py-8 h-screen">
-      <div className="flex justify-center my-4">
-        <div className="transform scale-325">
+      <div className="container mx-auto py-20 px-4">
+        <h1 className="text-4xl font-extrabold text-gray-600 text-center mb-10">
+          Contacta con <span className="text-red-400">Nosotros</span>
+        </h1>
+        
+        <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md shadow-gray-300">
+          <h1 className="text-3xl font-bold text-center mb-8">{contactoData.titulo}</h1>
+          
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {contactoData.contacto.map((campo) => (
+              <div key={campo.id} className="space-y-2">
+                <label htmlFor={`campo-${campo.id}`} className="block text-gray-700 font-medium">
+                  {campo.NombreDato}
+                </label>
+                <input
+                  id={`campo-${campo.id}`}
+                  type={campo.NombreDato.toLowerCase() === 'mail' ? 'email' : 'text'}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  value={formData[campo.NombreDato] || ''}
+                  onChange={(e) => handleInputChange(campo.NombreDato, e.target.value)}
+                  required
+                />
+              </div>
+            ))}
+            
+            <div className="text-center">
+              <button 
+                type="submit" 
+                className="px-6 py-2 bg-red-500 text-white font-medium rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              >
+                {contactoData.Boton}
+              </button>
+            </div>
+          </form>
         </div>
       </div>
-      
-      <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md shadow-gray-300">
-        <h1 className="text-3xl font-bold text-center mb-8">{contactoData.titulo}</h1>
-        
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {contactoData.contacto.map((campo) => (
-            <div key={campo.id} className="space-y-2">
-              <label htmlFor={`campo-${campo.id}`} className="block text-gray-700 font-medium">
-                {campo.NombreDato}
-              </label>
-              <input
-                id={`campo-${campo.id}`}
-                type={campo.NombreDato.toLowerCase() === 'mail' ? 'email' : 'text'}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                value={formData[campo.NombreDato] || ''}
-                onChange={(e) => handleInputChange(campo.NombreDato, e.target.value)}
-                required
-              />
-            </div>
-          ))}
-          
-          <div className="text-center">
-            <button 
-              type="submit" 
-              className="px-6 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-            >
-              {contactoData.Boton}
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
   );
 }

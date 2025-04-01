@@ -3,7 +3,7 @@ import FetchLogoNav from '@/componentes/FetchLogoNav';
 
 export default function LegalPage({ params }: { params: { slug: string } }) {
   return (
-    <div className="bg-gray-100">
+    <div className="">
       <div className="flex justify-center">
         <div className="transform scale-325 pt-10">
           <FetchLogoNav />

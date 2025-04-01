@@ -33,11 +33,10 @@ const SobreLaPagina: React.FC = async () => {
     if (!data) return <div>Cargando...</div>;
 
     return (
-        <div className="bg-white rounded-lg">
-            <div className="text-center flex items-center justify-center py-10 whitespace-nowrap">
-                <h2 className="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl">{data.data[0].titulo}</h2>
-                <h2 className="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl"><FetchTituloNav /></h2>
+        <div className="bg-gray-150 rounded-lg">
 
+            <div className="text-center flex items-center justify-center py-5">
+                <div className="font-bold text-2xl mr-2">{data.data[0].titulo} Aperturas Express - <FetchTituloNav /></div>
             </div>
 
             <h3 className="text-xl text-center">{data.data[0].descripcion}</h3>
@@ -48,7 +47,7 @@ const SobreLaPagina: React.FC = async () => {
                     <div className="flex flex-row items-center justify-center p-5">
                         <h4 className="font-bold text-xl mb-2 mx-5">{bulletPoint.tituloBP}</h4>
                         <img 
-                            className="w-10 h-10 object-cover ml-2 "
+                            className="w-10 h-10 object-cover ml-2"
                             src={`http://localhost:1337${bulletPoint.iconoBP.url}`} 
                             alt={bulletPoint.tituloBP} 
                         />

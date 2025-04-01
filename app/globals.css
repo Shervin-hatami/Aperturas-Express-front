@@ -3,3 +3,48 @@
 body {
   background-color: #f3f4f6;
 }
+
+.rotating-border-container {
+  position: relative;
+  max-width: 64rem;
+  margin: 0 auto;
+  border-radius: 0.5rem;
+  padding: 7px;
+  overflow: hidden;
+}
+
+.rotating-border-content {
+  background-color: white;
+  border-radius: 0.375rem;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.rotating-border::before {
+  content: '';
+  position: absolute;
+  inset: -150%;
+  background: conic-gradient(rgba(255, 0, 0, 0.4), rgba(255, 255, 255, 0.5), rgba(255, 0, 0, 0.4));
+  animation: rotate 3s linear infinite;
+}
+
+.grid-background > div {
+  height: auto;
+  transition: all 1.5s ease;
+}
+
+
+.grid-background {
+  animation: gridFlow 20s linear infinite;
+}

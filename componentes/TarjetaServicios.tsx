@@ -30,7 +30,7 @@ const TarjetaServicios: React.FC = async () => {
     if (!data) return <div>Cargando...</div>;
 
     return (
-        <div className="flex flex-col items-center w-screen px-10 py-10 bg-white">
+        <div className="flex flex-col items-center w-screen px-10 py-10">
             {data.map((tarjeta, index) => (
                 <div key={index} className="m-4 p-5 border-2 border-gray-100 rounded shadow-xl w-full bg-gray-100">
                     <div className="flex items-center mx-10">
