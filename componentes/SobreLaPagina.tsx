@@ -23,20 +23,28 @@ interface SobrePaginaData {
         documentId: string;
         titulo: string;
         descripcion: string;
+        slug: string;
         bulletPoints: BulletPoint[];
     }[];
 }
 
-const SobreLaPagina: React.FC = async () => {
+interface SobrePaginaProps {
+    slug: string;
+}
+
+const SobreLaPagina: React.FC<SobrePaginaProps> = async ({slug}) => {
+    console.log('Slug recibido en SobreLaPagina:', slug);
+    const tituloProvincia = await FetchTituloNav(slug);
+    console.log('Título provincia en SobreLaPagina:', tituloProvincia);
     const data: SobrePaginaData | null = await fetchFromStrapi('sobre-paginas?populate[bulletPoints][populate]=*');
 
     if (!data) return <div>Cargando...</div>;
 
     return (
-        <div className="bg-gray-150 rounded-lg">
-
-            <div className="text-center flex items-center justify-center py-5">
-                <div className="font-bold text-2xl mr-2">{data.data[0].titulo} Aperturas Express - <FetchTituloNav /></div>
+        <div className="bg-white rounded-lg">
+            <div className="text-center flex items-center justify-center py-10 whitespace-nowrap">
+                <h2 className="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl">{data.data[0].titulo}</h2>
+                <h2 className="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl">{tituloProvincia?.titulo || 'Cargando...'}</h2>
             </div>
 
             <h3 className="text-xl text-center">{data.data[0].descripcion}</h3>

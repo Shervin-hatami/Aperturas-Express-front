@@ -1,10 +1,25 @@
 import { fetchFromStrapi } from './Fetcher';
 
+interface FotoHero {
+    url: string;
+    formats: {
+        thumbnail?: { url: string };
+        small?: { url: string };
+        medium?: { url: string };
+        large?: { url: string };
+    };
+}
+
 interface Provincia {
     id: number;
     documentId: string;
     Provincia: string;
     slug: string;
+    NumeroProvincia: string;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+    fotoHero: FotoHero;
 }
 
 interface TituloPaginaResponse {
@@ -16,16 +31,32 @@ interface TituloPaginaResponse {
         updatedAt: string;
         publishedAt: string;
         pagina_provincias: Provincia[];
-    } | null;
+    };
+    meta: Record<string, unknown>;
 }
 
-const FetchTituloNav = async (slug: string): Promise<string | null> => {
-    const response = await fetchFromStrapi<TituloPaginaResponse>('titulo-pagina?populate=*');
+interface FetchTituloNavResult {
+    titulo: string;
+    imagenUrl?: string;
+}
+
+const FetchTituloNav = async (slug: string): Promise<FetchTituloNavResult | null> => {
+    const response = await fetchFromStrapi<TituloPaginaResponse>('titulo-pagina?populate[pagina_provincias][populate]=fotoHero');
     
-    if (response && response.data) {
+    if (response?.data) {
         const provincias = response.data.pagina_provincias;
-        const provinciaEncontrada = provincias.find(provincia => provincia.slug === slug);
-        return provinciaEncontrada ? provinciaEncontrada.Provincia : response.data.tituloPagina;
+        const provinciaEncontrada = provincias.find((provincia: Provincia) => provincia.slug === slug);
+        
+        if (provinciaEncontrada) {
+            return {
+                titulo: provinciaEncontrada.Provincia,
+                imagenUrl: provinciaEncontrada.fotoHero?.url
+            };
+        }
+        
+        return {
+            titulo: response.data.tituloPagina
+        };
     }
     return null;
 };

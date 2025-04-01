@@ -13,8 +13,8 @@ export default function Home() {
     <div>
       <h1 className="text-white"></h1>
       <Hero slug={slug} />
-      <SobreLaPagina/> 
-      <SeccionServicios/>
+      <SobreLaPagina slug={slug} /> 
+      <SeccionServicios slug={slug}/>
       <CTA/>
       <ComentariosContainer />
       <SeccionProvincias/>

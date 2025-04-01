@@ -29,10 +29,13 @@ interface SeccionServicio {
     descripcion: string;
     tarjeta_servicios: TarjetaServicio[];
 }
+interface SeccionServicioProps{
+    slug: string;
+}
 
-const SeccionServicios: React.FC = async () => {
+const SeccionServicios: React.FC<SeccionServicioProps> = async ({slug}) => {
     const response = await fetchFromStrapi<SeccionServicio>('seccion-servicio?populate=fondo&populate=icono&populate=tarjeta_servicios.icono');
-
+    const tituloProvincia = await FetchTituloNav(slug);
     // Accedemos a la propiedad data de la respuesta
     const data: SeccionServicio | null = response ? response.data : null;
 
@@ -53,7 +56,7 @@ const SeccionServicios: React.FC = async () => {
                     <img src={`http://localhost:1337${data.icono.url}`} alt={data.titulo} className="my-2 mx-2 w-10 h-10 md:w-16 md:h-16" />
                     <div className="text-xl md:text-2xl font-bold flex items-center whitespace-nowrap backdrop-blur-xs rounded-lg p-2">
                         <h1 className="mr-1 text-lg md:text-2xl">{data.titulo} </h1>
-                        <h1 className="mr-1 text-lg md:text-2xl"><FetchTituloNav /></h1>
+                        <h1 className="mr-1 text-lg md:text-2xl">{tituloProvincia?.titulo || 'Cargando...'}</h1>
                     </div>
                 </div>
                 <div className="backdrop-blur-sm bg-white/10 p-6 rounded-lg shadow-lg mx-5">

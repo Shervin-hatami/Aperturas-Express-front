@@ -16,8 +16,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
             <Navbar slug={slug} />
             <h1>Provincia: {slug}</h1>
             <Hero slug={slug} />
-            <SobreLaPagina/> 
-            <SeccionServicios/>
+            <SobreLaPagina slug={slug} /> 
+            <SeccionServicios slug={slug}/>
             <CTA/>
             <ComentariosContainer />
             <SeccionProvincias/>
