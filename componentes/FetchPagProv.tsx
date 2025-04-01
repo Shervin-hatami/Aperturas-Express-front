@@ -14,15 +14,19 @@ interface Provincia {
     fotoHero: FotoHero;
 }
 
+interface StrapiResponse {
+    data: Provincia[];
+}
+
 // Cambiar la definición del componente a una función asíncrona
 const FetchPagProv = async (): Promise<Provincia[]> => {
-    const response = await fetchFromStrapi<{ data: Provincia[] }>('pagina-provincias?populate=*');
-
-    // Verificamos si la respuesta es nula y manejamos el caso
-    const data: Provincia[] = response?.data || [];
-    
-    // Retornamos los datos
-    return data;
+    try {
+        const response = await fetchFromStrapi<StrapiResponse>('pagina-provincias?populate=*&pagination[pageSize]=100');
+        return Array.isArray(response?.data) ? response.data : [];
+    } catch (error) {
+        console.error('Error fetching provinces:', error);
+        return [];
+    }
 };
 
 export default FetchPagProv;
