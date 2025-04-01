@@ -41,7 +41,7 @@ const SobreLaPagina: React.FC<SobrePaginaProps> = async ({slug}) => {
     if (!data) return <div>Cargando...</div>;
 
     return (
-        <div className="bg-white rounded-lg">
+        <div className="rounded-lg">
             <div className="text-center flex items-center justify-center py-10 whitespace-nowrap">
                 <h2 className="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl">{data.data[0].titulo}</h2>
                 <h2 className="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl">{tituloProvincia?.titulo || 'Cargando...'}</h2>

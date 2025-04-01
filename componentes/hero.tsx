@@ -59,7 +59,7 @@ export default async function Hero({ slug }: HeroProps) {
   const imagenUrl = titulo?.imagenUrl ? `${apiUrl}${titulo.imagenUrl}` : `${apiUrl}${heroData.image.url}`;
 
   return (
-    <section className="bg-gray-100 pt-0 -mt-[72px]">
+    <section className="pt-0 -mt-[72px]">
       <div className="container mx-auto pt-[72px] pb-12 px-4 md:px-8 lg:px-16 flex flex-col lg:flex-row items-center">
         {/* Contenido del lado izquierdo */}
         <div className="lg:w-1/2 mb-8 lg:mb-0 lg:pr-12">

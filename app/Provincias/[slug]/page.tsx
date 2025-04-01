@@ -14,7 +14,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
     return (
         <div className="mt-10">
             <Navbar slug={slug} />
-            <h1>Provincia: {slug}</h1>
             <Hero slug={slug} />
             <SobreLaPagina slug={slug} /> 
             <SeccionServicios slug={slug}/>
