@@ -56,6 +56,7 @@ export default async function Hero({ slug }: HeroProps) {
   };
 
   const titulo = await FetchTituloNav(slug);
+  const imagenUrl = titulo?.imagenUrl ? `${apiUrl}${titulo.imagenUrl}` : `${apiUrl}${heroData.image.url}`;
 
   return (
     <section className="bg-gray-100 pt-0 -mt-[72px]">
@@ -72,7 +73,7 @@ export default async function Hero({ slug }: HeroProps) {
               {heroData.title}
            </h1>
             <h1>
-              {titulo}
+              {titulo?.titulo || ''}
            </h1> 
           </div>
           <p className="text-lg text-gray-700 mb-8">
@@ -125,7 +126,7 @@ export default async function Hero({ slug }: HeroProps) {
         <div className="lg:w-1/2 flex justify-end">
           <div className="relative lg:right-[-150px] lg:top-[30px] p-1 border-4 border-white/30 rounded-lg bg-white/5 shadow-xl">
             <img 
-              src={imageUrl} 
+              src={imagenUrl} 
               alt={heroData.title}
               className="rounded-md w-full h-auto max-w-2xl object-cover"
             />

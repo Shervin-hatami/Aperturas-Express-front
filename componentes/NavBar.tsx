@@ -18,7 +18,7 @@ const Navbar: React.FC<NavbarProps> = async ({ slug }) => {
                 </div>
             </div>
             <div className="flex flex-row items-center justify-between text-xs">
-                Aperturas Express - {tituloProvincia || 'Cargando...'}
+                Aperturas Express - {tituloProvincia?.titulo || 'Cargando...'}
             </div>
         </div>
     );
