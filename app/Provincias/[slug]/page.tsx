@@ -8,12 +8,16 @@ import SeccionProvincias from '@/componentes/SeccionProvincias';
 import Hero from '@/componentes/hero';
 import Navbar from '@/componentes/NavBar';
 
+
 export default async function Page({ params }: { params: { slug: string } }) {
     const slug = params.slug; // Accede a slug directamente
 
     return (
         <div className="mt-10">
-            <Navbar slug={slug} />
+            <div className="z-30">
+                <Navbar slug={slug} /> 
+            </div>
+           
             <Hero slug={slug} />
             <SobreLaPagina slug={slug} /> 
             <SeccionServicios slug={slug}/>

@@ -9,7 +9,7 @@ const GridBackground: React.FC<GridBackgroundProps> = ({ className = '', childre
   return (
     <div className={`relative ${className} overflow-hidden`}>
       {/* Grid background */}
-      <div className="grid-background absolute inset-0 p-2 grid grid-cols-16 gap-3 transform scale-125 overflow-hidden -skew-y-10">
+      <div className="grid-background absolute inset-0 p-2 grid grid-cols-16 gap-1 transform scale-125 overflow-hidden -skew-y-10">
         {/* Fila 1 */}
         <div className="col-span-2 bg-teal-800/30 rounded animate-pulse-slow"></div>
         <div className="col-span-5 bg-teal-800/30 rounded animate-pulse"></div>
