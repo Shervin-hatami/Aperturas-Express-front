@@ -6,6 +6,7 @@ import ComentariosContainer from '@/componentes/ComentariosContainer';
 import CTA from "@/componentes/CTA";
 import SeccionProvincias from '@/componentes/SeccionProvincias';
 import Navbar from '@/componentes/NavBar';
+import Publi from '@/componentes/Publi';
 
 export default function Home() {
   const slug = 'default-slug'; // Define un slug por defecto o obténlo de alguna manera
@@ -20,6 +21,7 @@ export default function Home() {
       <CTA/>
       <ComentariosContainer />
       <SeccionProvincias/>
+      <Publi/>
       <TarjetaServicios/>
     </div>
   );
