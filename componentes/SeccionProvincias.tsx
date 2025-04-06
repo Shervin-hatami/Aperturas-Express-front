@@ -29,27 +29,27 @@ const SeccionProvincias: React.FC = () => {
 
     return (
 
-        <div className="mt-5 p-4 bg-gray-100 rounded-lg shadow-md w-1/2 mx-auto">
-            <GridBackground className="w-full">
-                <h1 className="text-2xl font-bold mb-4">Provincias</h1>
+        <div className="mt-5 p-2 bg-emerald-50 rounded-lg shadow-md w-1/2 mx-auto">
+            <GridBackground className="w-full rounded-lg">
+                <h1 className="text-2xl font-bold mb-4 text-center text-teal-950">Provincias</h1>
             {loading ? (
                 <div>Cargando...</div>
             ) : (
                 <>
-                    <div className="grid grid-cols-4 gap-1">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
                         {displayedProvinces.map((provincia) => (
-                            <Link key={provincia.id} href={`/Provincias/${provincia.slug}`} className="bg-gray-100">
-                                <div className="border border-gray-300 p-2 rounded-lg text-center hover:bg-gray-200 transition duration-200">
-                                    <h2 className="text-lg font-semibold">{provincia.Provincia}</h2>
+                            <Link key={provincia.id} href={`/Provincias/${provincia.slug}`} className="bg-teal-50 rounded-lg">
+                                <div className="border border-gray-300 p-2 rounded-lg text-center hover:bg-gradient-to-r hover:from-green-300 hover:to-teal-50 transition duration-200">
+                                    <h2 className="italic">{provincia.Provincia}</h2>
                                 </div>
                             </Link>
                         ))}
                     </div>
                     {data.length > 20 && (
-                        <div className="mt-4 text-center">
+                        <div className="m-4 text-center">
                             <button
                                 onClick={() => setShowAll(!showAll)}
-                                className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-200"
+                                className="bg-teal-800 hover:bg-teal-900 text-white font-semibold py-2 px-4 rounded-lg transition duration-200"
                             >
                                 {showAll ? 'Mostrar menos' : `Mostrar ${data.length - 20} más`}
                             </button>
